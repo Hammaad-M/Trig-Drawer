@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Trig Project</title>
+    <link rel="stylesheet" href="styles.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@jaames/iro@5"></script>
+</head>
+<body onload="resize()">
+    <div id="settings-panel" class="settings-panel-open settings-panel">
+        <div id="settings">
+            <h3>Settings</h3>
+            <div class="setting">
+                <label for="radius">Radius: </label>
+                <input min="1" max="50" onchange="updateRadius()" id="radius-input" type="range">
+            </div>
+            <br>
+            <div class="setting">
+                <label for="thickness">Thickness: </label>
+                <input min="1" max="10" onchange="updateThickness()" id="thickness-input" type="range">
+            </div>
+            <br>
+            <h2>Stroke Color</h2>
+            <br>
+            <div id="color-picker"></div>
+        </div>
+        <div id="expand-icon">
+            <img src="paint-brush-solid.png" alt="settings">
+        </div>
+    </div>
+    <div class="canvas-wrapper">
+        <canvas id="main-canvas">
+            Your Browser does not support HTML5 canvas :(
+        </canvas>
+    </div>
+    <script src="app.js"></script>
+</body>
+</html>
