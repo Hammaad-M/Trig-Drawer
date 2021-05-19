@@ -1,5 +1,5 @@
 const canvas = document.getElementById("main-canvas");
-const canvasWrapper = document.querySelector("canvas-wrapper");
+const canvasWrapper = document.querySelector(".canvas-wrapper");
 const settingsPanel = document.getElementById("settings-panel");
 const settingsContainer = document.getElementById("settings");
 const thicknessInput = document.getElementById("thickness-input");
@@ -7,6 +7,7 @@ const radiusInput = document.getElementById("radius-input");
 const expandIcon = document.getElementById("expand-icon");
 const delayInput = document.getElementById("delay-input");
 const ctx = canvas.getContext("2d");
+ctx.save();
 const colorPicker = new iro.ColorPicker('#color-picker', {
     width: 200,
     color: "#f00"
@@ -91,7 +92,4 @@ function updateDelay() {
 }
 function clearCanvas() {
     ctx.clearRect(0, 0, canvas.width, canvas.height);
-    const w = canvas.width;
-    canvas.width = 1;
-    canvas.width = w;
 }
