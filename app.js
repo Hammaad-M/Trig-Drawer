@@ -21,17 +21,31 @@ let settingsOpen = false;
 
 const drawCircle = (x, y) => {
     ctx.fillStyle = colorPicker.color.hexString;
-    for (let i = 0; i <= 360; i++) {
-        const xPoint = x + Math.cos(i) * radius;
-        const yPoint = y + Math.sin(i) * radius;
+    for (let angle = 0; angle <= 360; angle++) {
+        const xPoint = x + Math.cos(angle) * radius;
+        const yPoint = y + Math.sin(angle) * radius;
         ctx.fillRect(xPoint , yPoint, thickness, thickness);
     }
+    // const draw = (angle) => {
+    //     if (angle < 0) return;
+    //     const xPoint = x + Math.cos(angle) * radius;
+    //     const yPoint = y + Math.sin(angle) * radius;
+    //     ctx.fillRect(xPoint , yPoint, thickness, thickness);
+    //     setTimeout(draw(angle - 1), 200);
+    // }
+    // draw(360);
 }
-
-$('#main-canvas').mousemove((e) => {
+const draw = (e) => {
+    if (e.buttons !== 1) return;
     mouseX = e.clientX;
     mouseY = e.clientY;
     drawCircle(mouseX, mouseY);
+}
+$('#main-canvas').mousemove((e) => {
+    draw(e);
+});
+$('#main-canvas').mousedown((e) => {
+    draw(e);
     if (settingsOpen) {
         settingsPanel.classList.add("settings-panel-close");
         settingsPanel.classList.remove("settings-panel-open");

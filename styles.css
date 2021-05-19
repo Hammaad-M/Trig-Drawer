@@ -58,6 +58,8 @@
 }
 .setting input {
     margin-left: 30px;
+    margin-top: 5px;
+    float: right;
 }
 
 #color-picker {
@@ -77,5 +79,19 @@ body {
     margin: 0;
     padding: 0;
     font-family: 'Open Sans', sans-serif;
-    /* overflow: hidden; */
+    overflow: hidden;
+}
+
+.watermark {
+    color: black;
+    font-family: 'Bebas Neue', cursive;
+    font-family: 'Dosis', sans-serif;
+    font-size: 15px;
+    text-align: right;
+    position: absolute;
+    float: right;
+    width: 220px;
+    margin-left: auto;
+    top: 10px;
+    right: 20px;
 }
