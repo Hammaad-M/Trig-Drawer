@@ -20,7 +20,7 @@ let delay = 0;
 delayInput.value = delay;
 thicknessInput.value = thickness;
 radiusInput.value = radius;
-let settingsOpen = false;
+let settingsOpen = true;
 
 function sleep(ms) {
     if (ms === 0) return;
