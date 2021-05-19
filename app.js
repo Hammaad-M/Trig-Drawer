@@ -89,3 +89,9 @@ function updateRadius() {
 function updateDelay() {
     delay = parseInt(delayInput.value);
 }
+function clearCanvas() {
+    ctx.clearRect(0, 0, canvas.width, canvas.height);
+    const w = canvas.width;
+    canvas.width = 1;
+    canvas.width = w;
+}

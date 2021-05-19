@@ -60,6 +60,7 @@
     margin-left: 30px;
     margin-top: 5px;
     float: right;
+    fill: black;
 }
 
 #color-picker {
@@ -67,6 +68,18 @@
     position: relative;
     text-align: center;
     margin: 0 auto;
+}
+#clear-button {
+    position: absolute;
+    width: max-content;
+    padding: 10px;
+    font-size: 15px;
+    color: white;
+    border: 1px solid white;
+    background-color: black;
+    top: 5px;
+    left: 5px;
+    border-radius: 5px;
 }
 
 canvas {
