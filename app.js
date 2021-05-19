@@ -5,7 +5,7 @@ const settingsContainer = document.getElementById("settings");
 const thicknessInput = document.getElementById("thickness-input");
 const radiusInput = document.getElementById("radius-input");
 const expandIcon = document.getElementById("expand-icon");
-
+const delayInput = document.getElementById("delay-input");
 const ctx = canvas.getContext("2d");
 const colorPicker = new iro.ColorPicker('#color-picker', {
     width: 200,
@@ -15,25 +15,38 @@ let mouseX;
 let mouseY;
 let radius = 10;
 let thickness = 1;
+let delay = 0;
+
+delayInput.value = delay;
 thicknessInput.value = thickness;
 radiusInput.value = radius;
 let settingsOpen = false;
 
-const drawCircle = (x, y) => {
+function sleep(ms) {
+    if (ms === 0) return;
+    return( new Promise((resolve, reject) => {
+            setTimeout(() => resolve(), ms);
+        })
+    );
+}
+
+const drawCircle = async (x, y) => {
     ctx.fillStyle = colorPicker.color.hexString;
-    for (let angle = 0; angle <= 360; angle++) {
-        const xPoint = x + Math.cos(angle) * radius;
-        const yPoint = y + Math.sin(angle) * radius;
-        ctx.fillRect(xPoint , yPoint, thickness, thickness);
-    }
-    // const draw = (angle) => {
-    //     if (angle < 0) return;
+    // for (let angle = 0; angle <= 360; angle++) {
     //     const xPoint = x + Math.cos(angle) * radius;
     //     const yPoint = y + Math.sin(angle) * radius;
     //     ctx.fillRect(xPoint , yPoint, thickness, thickness);
-    //     setTimeout(draw(angle - 1), 200);
+    //     await sleep(delay);
     // }
-    // draw(360);
+    const draw = async (angle, ogThickness, ogRadius) => {
+        if (angle < 0) return;
+        const xPoint = x + Math.cos(angle) * ogRadius;
+        const yPoint = y + Math.sin(angle) * ogRadius;
+        ctx.fillRect(xPoint , yPoint, ogThickness, ogThickness);
+        await sleep(delay);
+        draw(angle-1, ogThickness, ogRadius);
+    }
+    draw(360, thickness, radius);
 }
 const draw = (e) => {
     if (e.buttons !== 1) return;
@@ -72,4 +85,7 @@ function updateThickness() {
 }
 function updateRadius() {
     radius = parseInt(radiusInput.value);
+}
+function updateDelay() {
+    delay = parseInt(delayInput.value);
 }
