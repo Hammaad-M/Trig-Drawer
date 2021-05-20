@@ -55,17 +55,19 @@
 .setting {
     font-size: 20px;
     padding: 5px;
+    font-weight: bold;
 }
 .setting input {
     margin-left: 30px;
     margin-top: 5px;
     float: right;
     fill: black;
-    border-radius: 5px;
+    border-radius: 8px;
     height: 10px;
     -webkit-appearance: none;
-    background-color: #f00;
+    background-color: #75ffa8;
     color: white;
+    border: 1px solid white;
 }
 .setting input::-webkit-slider-thumb {
     -webkit-appearance: none;
@@ -79,6 +81,7 @@
 }
 
 #color-picker {
+    cursor: pointer;
     width: max-content;
     position: relative;
     text-align: center;

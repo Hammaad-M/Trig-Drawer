@@ -9,7 +9,7 @@ const delayInput = document.getElementById("delay-input");
 const ctx = canvas.getContext("2d");
 const colorPicker = new iro.ColorPicker('#color-picker', {
     width: 200,
-    color: "#f00"
+    color: "#75ffa8"
 });
 let mouseX;
 let mouseY;
