@@ -49,6 +49,7 @@ const createCircle = async (x, y, weight, r, color, angle=360) => {
 
 const draw = (e) => {
     if (e.buttons !== 1 || settingsOpen) return;
+    console.log("called");
     let mouseX = e.clientX;
     let mouseY = e.clientY;
     createCircle(

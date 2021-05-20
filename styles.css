@@ -20,10 +20,7 @@
     margin-bottom: 0.5em;
     text-align: center;
 }
-.settings-panel h2 {
-    font-size: 25px;
-    text-align: center;
-}
+
 .settings-panel-open {
     width: max-content;
     height: min-content;
@@ -60,7 +57,7 @@
 }
 .setting input {
     margin-left: 30px;
-    margin-top: 5px;
+    margin-top: 8px;
     float: right;
     fill: black;
     border-radius: 8px;
@@ -68,7 +65,7 @@
     -webkit-appearance: none;
     background-color: #75ffa8;
     color: white;
-    border: 1px solid white;
+    border: 1px solid black;
 }
 .setting input::-webkit-slider-thumb {
     -webkit-appearance: none;
@@ -105,6 +102,11 @@ canvas {
     background-color: rgb(24, 20, 20);
     width: 100%;
     height: 100%;
+}
+
+h2 {
+    font-size: 25px;
+    text-align: center;
 }
 
 body {
