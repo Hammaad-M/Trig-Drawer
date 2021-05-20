@@ -49,7 +49,6 @@ const createCircle = async (x, y, weight, r, color, angle=360) => {
 
 const draw = (e) => {
     if (e.buttons !== 1 || settingsOpen) return;
-    console.log("called");
     let mouseX = e.clientX;
     let mouseY = e.clientY;
     createCircle(
@@ -76,17 +75,21 @@ $('#main-canvas').mousedown((e) => {
     }
 });
 $("#settings-panel").mouseenter(() => {
-    settingsPanel.classList.remove("settings-panel-close");
-    settingsPanel.classList.add("settings-panel-open");
-    settingsContainer.style.display = "block";
-    expandIcon.style.display = "none";
-    settingsOpen = true;
+    if (!mouseDown) {
+        settingsPanel.classList.remove("settings-panel-close");
+        settingsPanel.classList.add("settings-panel-open");
+        settingsContainer.style.display = "block";
+        expandIcon.style.display = "none";
+        settingsOpen = true;
+    }
 });
 $("#color-picker").mouseup(() => {
     $(".slider").css({
         "background-color": colorPicker.color.hexString
     });
 });
+$(window).mousedown(() => mouseDown = true);
+$(window).mouseup(() => mouseDown = false);
 
 window.addEventListener("resize", resize);
 
