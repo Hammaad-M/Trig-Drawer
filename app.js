@@ -15,7 +15,7 @@ let mouseX;
 let mouseY;
 let radius = 10;
 let thickness = 1;
-let delay = 0;
+let delay = 10;
 let saveDelay = delay;
 let canvasCleared = false;
 let settingsOpen = true;
