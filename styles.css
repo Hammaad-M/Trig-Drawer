@@ -61,6 +61,21 @@
     margin-top: 5px;
     float: right;
     fill: black;
+    border-radius: 5px;
+    height: 10px;
+    -webkit-appearance: none;
+    background-color: #f00;
+    color: white;
+}
+.setting input::-webkit-slider-thumb {
+    -webkit-appearance: none;
+    width: 18px;
+    height: 18px;
+    border-radius: 10px;
+    overflow: visible;
+    cursor: pointer;
+    background-color: white;
+    border: 1px solid black;
 }
 
 #color-picker {

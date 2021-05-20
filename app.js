@@ -18,11 +18,10 @@ let thickness = 1;
 let delay = 0;
 let saveDelay = delay;
 let canvasCleared = false;
-
+let settingsOpen = true;
 delayInput.value = delay;
 thicknessInput.value = thickness;
 radiusInput.value = radius;
-let settingsOpen = true;
 
 function sleep(ms) {
     if (ms === 0) return;
@@ -75,12 +74,17 @@ $('#main-canvas').mousedown((e) => {
         settingsOpen = false;
     }
 });
-$("#settings-panel").mouseenter(e => {
+$("#settings-panel").mouseenter(() => {
     settingsPanel.classList.remove("settings-panel-close");
     settingsPanel.classList.add("settings-panel-open");
     settingsContainer.style.display = "block";
     expandIcon.style.display = "none";
     settingsOpen = true;
+});
+$("#color-picker").mouseup(() => {
+    $(".slider").css({
+        "background-color": colorPicker.color.hexString
+    });
 });
 
 window.addEventListener("resize", resize);
