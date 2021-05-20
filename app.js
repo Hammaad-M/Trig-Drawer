@@ -13,7 +13,7 @@ const colorPicker = new iro.ColorPicker('#color-picker', {
 });
 let mouseX;
 let mouseY;
-let radius = 10;
+let radius = 100;
 let thickness = 1;
 let delay = 10;
 let saveDelay = delay;
