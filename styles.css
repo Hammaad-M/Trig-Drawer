@@ -36,7 +36,7 @@
 .settings-panel-close {
     width: 6%;
     height: 100%;
-    background-color: black;
+    background-color: transparent;
     border-radius: 0;
 }
 #expand-icon {
@@ -46,7 +46,7 @@
     display: flex;
     justify-content: center;
     align-items: center;
-    margin-top: 200%;
+    margin-top: 20%;
 }
 #expand-icon img {
     width: 100%;
@@ -101,7 +101,7 @@
 }
 
 canvas {
-    background-color: rgb(221, 215, 215);
+    background-color: rgb(24, 20, 20);
     width: 100%;
     height: 100%;
 }
