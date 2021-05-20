@@ -7,7 +7,6 @@ const radiusInput = document.getElementById("radius-input");
 const expandIcon = document.getElementById("expand-icon");
 const delayInput = document.getElementById("delay-input");
 const ctx = canvas.getContext("2d");
-ctx.save();
 const colorPicker = new iro.ColorPicker('#color-picker', {
     width: 200,
     color: "#f00"
@@ -17,6 +16,8 @@ let mouseY;
 let radius = 10;
 let thickness = 1;
 let delay = 0;
+let saveDelay = delay;
+let canvasCleared = false;
 
 delayInput.value = delay;
 thicknessInput.value = thickness;
@@ -31,34 +32,40 @@ function sleep(ms) {
     );
 }
 
-const drawCircle = async (x, y) => {
-    ctx.fillStyle = colorPicker.color.hexString;
-    // for (let angle = 0; angle <= 360; angle++) {
-    //     const xPoint = x + Math.cos(angle) * radius;
-    //     const yPoint = y + Math.sin(angle) * radius;
-    //     ctx.fillRect(xPoint , yPoint, thickness, thickness);
-    //     await sleep(delay);
-    // }
-    const draw = async (angle, ogThickness, ogRadius) => {
-        if (angle < 0) return;
-        const xPoint = x + Math.cos(angle) * ogRadius;
-        const yPoint = y + Math.sin(angle) * ogRadius;
-        ctx.fillRect(xPoint , yPoint, ogThickness, ogThickness);
-        await sleep(delay);
-        draw(angle-1, ogThickness, ogRadius);
+const createCircle = async (x, y, weight, r, color, angle=360) => {
+    if (angle < 0 || canvasCleared) return;
+    const xPoint = x + Math.cos(angle) * r;
+    const yPoint = y + Math.sin(angle) * r;
+    if (ctx.fillStyle !== color) {
+        let temp = ctx.fillStyle;
+        ctx.fillStyle = color;
+        ctx.fillRect(xPoint , yPoint, weight, weight);
+        ctx.fillStyle = temp;
+    } else {
+        ctx.fillRect(xPoint , yPoint, weight, weight);
     }
-    draw(360, thickness, radius);
+    await sleep(delay);
+    createCircle(x, y, weight, r, color, angle-1);
 }
+
 const draw = (e) => {
-    if (e.buttons !== 1) return;
-    mouseX = e.clientX;
-    mouseY = e.clientY;
-    drawCircle(mouseX, mouseY);
+    if (e.buttons !== 1 || settingsOpen) return;
+    let mouseX = e.clientX;
+    let mouseY = e.clientY;
+    createCircle(
+        mouseX, 
+        mouseY, 
+        thickness, 
+        radius, 
+        colorPicker.color.hexString
+    );
 }
+
 $('#main-canvas').mousemove((e) => {
     draw(e);
 });
 $('#main-canvas').mousedown((e) => {
+    canvasCleared = false;
     draw(e);
     if (settingsOpen) {
         settingsPanel.classList.add("settings-panel-close");
@@ -77,6 +84,7 @@ $("#settings-panel").mouseenter(e => {
 });
 
 window.addEventListener("resize", resize);
+
 function resize() {
     ctx.canvas.width = window.innerWidth;
     ctx.canvas.height = window.innerHeight;
@@ -92,4 +100,5 @@ function updateDelay() {
 }
 function clearCanvas() {
     ctx.clearRect(0, 0, canvas.width, canvas.height);
+    canvasCleared = true;
 }

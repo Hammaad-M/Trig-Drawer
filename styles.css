@@ -26,7 +26,7 @@
 }
 .settings-panel-open {
     width: max-content;
-    height: max-content;
+    height: min-content;
     padding: 2.5em 5em;
     background-color: gray;
     opacity: 0.8;
