@@ -33,8 +33,8 @@ function sleep(ms) {
 
 const createCircle = async (x, y, weight, r, color, angle=360) => {
     if (angle < 0 || canvasCleared) return;
-    const xPoint = x + Math.cos(angle) * r;
-    const yPoint = y + Math.sin(angle) * r;
+    const xPoint = x + Math.cos(angle * (Math.PI/180)) * r;
+    const yPoint = y + Math.sin(angle * (Math.PI/180)) * r;
     if (ctx.fillStyle !== color) {
         let temp = ctx.fillStyle;
         ctx.fillStyle = color;
